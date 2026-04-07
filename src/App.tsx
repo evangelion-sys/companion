@@ -206,6 +206,62 @@ function Navigation({ lang, setLang, dna }: { lang: Language, setLang: (l: Langu
   );
 }
 
+function AppContent({ lang, setLang, dna, setDna }: { lang: Language, setLang: (l: Language) => void, dna: SpiritualDNA, setDna: (d: SpiritualDNA) => void }) {
+  const location = useLocation();
+
+  const getThemeClasses = () => {
+    switch (location.pathname) {
+      case '/shadow':
+        return 'bg-blood-950 text-cream-50';
+      case '/zahra':
+      case '/qareen':
+        return 'bg-purple-950 text-cream-50';
+      case '/library':
+      case '/diwan':
+        return 'bg-blue-950 text-cream-50';
+      default:
+        return 'bg-emerald-950 text-cream-50';
+    }
+  };
+
+  return (
+    <div className={cn("min-h-screen flex flex-col transition-colors duration-1000", getThemeClasses())}>
+      <Navigation lang={lang} setLang={setLang} dna={dna} />
+      
+      <main className="flex-grow pt-14 pb-20">
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<Home lang={lang} dna={dna} setDna={setDna} />} />
+            <Route path="/nafas" element={<NafasTimeline lang={lang} dna={dna} />} />
+            <Route path="/selma" element={<SelmaStation lang={lang} dna={dna} />} />
+            <Route path="/shadow" element={<ShadowFire lang={lang} dna={dna} setDna={setDna} />} />
+            <Route path="/bouqala" element={<BouqalaArchive lang={lang} />} />
+            <Route path="/paths" element={<AncientPaths lang={lang} dna={dna} setDna={setDna} />} />
+            <Route path="/canvas" element={<CalligraphyCanvas lang={lang} />} />
+            <Route path="/diwan" element={<Diwan lang={lang} dna={dna} setDna={setDna} />} />
+            <Route path="/fiqh" element={<Fiqh lang={lang} dna={dna} setDna={setDna} />} />
+            <Route path="/zahra" element={<ChatZahra lang={lang} dna={dna} setDna={setDna} />} />
+            <Route path="/qareen" element={<ChatQareen lang={lang} dna={dna} setDna={setDna} />} />
+            <Route path="/library" element={<LibrarySection lang={lang} dna={dna} setDna={setDna} />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
+
+      <footer className="bg-black/20 text-cream-100 py-8 border-t border-gold-500/20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="font-kufic text-xl text-gold-500 mb-2">الأنيس</p>
+          <p className="text-sm opacity-70">
+            {lang === 'ar' ? 'رفيقك الروحي والثقافي' : 'Your Spiritual and Cultural Companion'}
+          </p>
+          <p className="text-[10px] mt-4 opacity-30 font-mono tracking-widest">
+            ᛋᛅᛚᛅᛘᛅ • SALAMA • سلامة
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
 export default function App() {
   const [lang, setLang] = useState<Language>('ar');
   const [dna, setDna] = useState<SpiritualDNA>(() => {
@@ -224,40 +280,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-emerald-950">
-        <Navigation lang={lang} setLang={setLang} dna={dna} />
-        
-        <main className="flex-grow pt-14 pb-20">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home lang={lang} dna={dna} setDna={setDna} />} />
-              <Route path="/nafas" element={<NafasTimeline lang={lang} dna={dna} />} />
-              <Route path="/selma" element={<SelmaStation lang={lang} dna={dna} />} />
-              <Route path="/shadow" element={<ShadowFire lang={lang} dna={dna} setDna={setDna} />} />
-              <Route path="/bouqala" element={<BouqalaArchive lang={lang} />} />
-              <Route path="/paths" element={<AncientPaths lang={lang} dna={dna} setDna={setDna} />} />
-              <Route path="/canvas" element={<CalligraphyCanvas lang={lang} />} />
-              <Route path="/diwan" element={<Diwan lang={lang} dna={dna} setDna={setDna} />} />
-              <Route path="/fiqh" element={<Fiqh lang={lang} dna={dna} setDna={setDna} />} />
-              <Route path="/zahra" element={<ChatZahra lang={lang} dna={dna} setDna={setDna} />} />
-              <Route path="/qareen" element={<ChatQareen lang={lang} dna={dna} setDna={setDna} />} />
-              <Route path="/library" element={<LibrarySection lang={lang} dna={dna} setDna={setDna} />} />
-            </Routes>
-          </AnimatePresence>
-        </main>
-
-        <footer className="bg-emerald-950 text-cream-100 py-8 border-t border-gold-500/20">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <p className="font-kufic text-xl text-gold-500 mb-2">الأنيس</p>
-            <p className="text-sm opacity-70">
-              {lang === 'ar' ? 'رفيقك الروحي والثقافي' : 'Your Spiritual and Cultural Companion'}
-            </p>
-            <p className="text-[10px] mt-4 opacity-30 font-mono tracking-widest">
-              ᛋᛅᛚᛅᛘᛅ • SALAMA • سلامة
-            </p>
-          </div>
-        </footer>
-      </div>
+      <AppContent lang={lang} setLang={setLang} dna={dna} setDna={setDna} />
     </Router>
   );
 }

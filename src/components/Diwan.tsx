@@ -6,6 +6,7 @@ import { Search, Copy, Check, Languages, Volume2, Loader2, Sparkles, Scroll, Pal
 import { cn } from '../lib/utils';
 import { GoogleGenAI, Modality } from "@google/genai";
 import { geminiService } from '../services/geminiService';
+import ReactMarkdown from 'react-markdown';
 
 export default function Diwan({ lang, dna, setDna }: { lang: Language, dna: SpiritualDNA, setDna: (d: SpiritualDNA) => void }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -211,42 +212,42 @@ export default function Diwan({ lang, dna, setDna }: { lang: Language, dna: Spir
                   <motion.div 
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-gold-500/10"
+                    className="space-y-8 pt-8 border-t border-gold-500/10"
                   >
-                    <div className="space-y-4">
-                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 flex items-center gap-2">
+                    <div className="p-6 bg-emerald-950/30 rounded-3xl border border-gold-500/10">
+                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 mb-4 flex items-center gap-2">
                         <Languages size={12} /> {lang === 'ar' ? 'الجسر اللغوي' : 'Linguistic Bridge'}
                       </h4>
-                      <p className="text-sm text-gold-200/80 leading-relaxed italic font-serif">
-                        {poem.translation}
-                      </p>
+                      <div className="markdown-body text-sm font-serif italic text-gold-100/80 leading-relaxed">
+                        <ReactMarkdown>{poem.translation || ''}</ReactMarkdown>
+                      </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 flex items-center gap-2">
-                        <Palette size={12} /> {lang === 'ar' ? 'التصور الخطي' : 'Calligraphic Visualization'}
+                    <div className="p-6 bg-emerald-950/30 rounded-3xl border border-gold-500/10">
+                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 mb-4 flex items-center gap-2">
+                        <Palette size={12} /> {lang === 'ar' ? 'التصور الخطي' : 'Calligraphic Rendering'}
                       </h4>
-                      <p className="text-xs text-cream-50/70 leading-relaxed">
-                        {poem.calligraphy}
-                      </p>
+                      <div className="markdown-body text-sm font-serif text-gold-100/80 leading-relaxed">
+                        <ReactMarkdown>{poem.calligraphy || ''}</ReactMarkdown>
+                      </div>
                     </div>
 
-                    <div className="space-y-4">
-                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 flex items-center gap-2">
-                        <Music size={12} /> {lang === 'ar' ? 'الوزن الموسيقي' : 'Musical Meter'}
+                    <div className="p-6 bg-emerald-950/30 rounded-3xl border border-gold-500/10">
+                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 mb-4 flex items-center gap-2">
+                        <Music size={12} /> {lang === 'ar' ? 'مقام القصيدة' : 'The Maqam Generator'}
                       </h4>
-                      <p className="text-xs font-bold text-gold-500 uppercase tracking-widest">
-                        {poem.meter}
-                      </p>
+                      <div className="markdown-body text-sm font-serif text-gold-100/80 leading-relaxed">
+                        <ReactMarkdown>{poem.meter || ''}</ReactMarkdown>
+                      </div>
                     </div>
 
-                    <div className="space-y-4">
-                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 flex items-center gap-2">
-                        <Scroll size={12} /> {lang === 'ar' ? 'التحليل اللغوي' : 'Linguistic Analysis'}
+                    <div className="p-6 bg-emerald-950/30 rounded-3xl border border-gold-500/10">
+                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 mb-4 flex items-center gap-2">
+                        <Scroll size={12} /> {lang === 'ar' ? 'الرنين النفسي' : 'Psychological Resonance'}
                       </h4>
-                      <p className="text-xs text-cream-50/60 leading-relaxed">
-                        {poem.analysis}
-                      </p>
+                      <div className="markdown-body text-sm font-serif text-gold-100/80 leading-relaxed">
+                        <ReactMarkdown>{poem.analysis || ''}</ReactMarkdown>
+                      </div>
                     </div>
                   </motion.div>
                 )}

@@ -13,10 +13,13 @@ import {
   Zap, 
   Scroll, 
   Shield, 
-  Crown 
+  Crown,
+  MessageSquare,
+  Heart
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { geminiService } from '../services/geminiService';
+import ReactMarkdown from 'react-markdown';
 
 export default function Home({ lang, dna, setDna }: { lang: Language, dna: SpiritualDNA, setDna: (d: SpiritualDNA) => void }) {
   const [oracle, setOracle] = useState<DailyOracle | null>(null);
@@ -135,28 +138,43 @@ export default function Home({ lang, dna, setDna }: { lang: Language, dna: Spiri
                     <span className="text-8xl font-mono text-gold-500">{oracle.runeSymbol}</span>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-8">
                     <div className="space-y-3">
                       <span className="diwani-header">
-                        <Scroll size={12} className="inline mr-2" /> {lang === 'ar' ? 'القلب' : 'The Heart'}
+                        <MessageSquare size={12} className="inline mr-2" /> {lang === 'ar' ? 'البوقالة' : 'The Bouqala'}
                       </span>
-                      <p className="text-base font-serif italic leading-relaxed text-gold-200/90">{oracle.sufiVerse}</p>
+                      <p className="text-base font-serif italic leading-relaxed text-gold-200/90">{oracle.ancientInsight}</p>
                     </div>
                     
                     <div className="space-y-3">
-                      <span className="kufic-header">
-                        <Shield size={12} className="inline mr-2" /> {lang === 'ar' ? 'التاريخ' : 'The History'}
+                      <span className="kufic-header text-crimson-500">
+                        <Shield size={12} className="inline mr-2" /> {lang === 'ar' ? 'مهمة الظل' : 'Shadow Task'}
                       </span>
-                      <p className="text-sm opacity-80 leading-relaxed font-light">{oracle.ancientInsight}</p>
-                    </div>
-
-                    <div className="space-y-3 border-l border-gold-500/10 pl-6">
-                      <span className="diwani-header text-crimson-900">
-                        <Flame size={12} className="inline mr-2" /> {lang === 'ar' ? 'الجسد' : 'The Body'}
-                      </span>
-                      <p className="text-sm font-bold text-gold-500 uppercase tracking-widest leading-snug">{oracle.powerCommand}</p>
+                      <p className="text-sm opacity-80 leading-relaxed font-light text-crimson-200">{oracle.powerCommand}</p>
                     </div>
                   </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left border-t border-gold-500/10 pt-8">
+                    <div className="space-y-3">
+                      <span className="diwani-header text-blue-400">
+                        <Heart size={12} className="inline mr-2" /> {lang === 'ar' ? 'آية السلام' : 'Verse of Peace'}
+                      </span>
+                      <p className="text-sm font-serif italic leading-relaxed text-blue-200/90">{oracle.sufiVerse}</p>
+                    </div>
+                    
+                    <div className="space-y-3 flex flex-col items-center justify-center">
+                      <span className="kufic-header text-emerald-500">
+                        <Zap size={12} className="inline mr-2" /> {lang === 'ar' ? 'الرمز الروني' : 'Runic Symbol'}
+                      </span>
+                      <span className="text-6xl font-mono text-emerald-500">{oracle.runeSymbol}</span>
+                    </div>
+                  </div>
+
+                  {oracle.closingPhrase && (
+                    <div className="mt-8 pt-6 border-t border-gold-500/10 text-center">
+                      <p className="text-sm font-serif italic text-gold-500/80">{oracle.closingPhrase}</p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ) : (

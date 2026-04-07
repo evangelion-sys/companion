@@ -122,4 +122,5 @@ export interface DailyOracle {
   ancientInsight: string; // Runic or Orthodox
   powerCommand: string;
   runeSymbol: string;
+  closingPhrase?: string;
 }

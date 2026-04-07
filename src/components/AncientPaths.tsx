@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Language, SpiritualDNA, Rune, OrthodoxTeaching } from '../types';
-import { Shield, Book, Sparkles, Scroll, History, Zap, Map, Palette } from 'lucide-react';
+import { Shield, Book, Sparkles, Scroll, History, Zap, Map, Palette, Eye, Sun } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const RUNES: Rune[] = [
@@ -49,8 +49,38 @@ const ORTHODOX_TEACHINGS: OrthodoxTeaching[] = [
   }
 ];
 
+const SUMERIAN_SYSTEMS = [
+  {
+    title: 'The Me (Divine Decrees)',
+    content: 'The fundamental principles and powers that govern the universe, civilization, and human behavior in Sumerian mythology. They are the blueprints of reality.',
+    source: 'Enki and the World Order',
+    theologyOfBeauty: 'Order and civilization are inherently beautiful, representing the triumph of divine will over primordial chaos.'
+  },
+  {
+    title: 'The Descent of Inanna',
+    content: 'A profound myth of the Queen of Heaven descending into the Underworld, facing her shadow (Ereshkigal), being stripped of her powers, dying, and being reborn.',
+    source: 'Sumerian Clay Tablets',
+    theologyOfBeauty: 'True sovereignty requires integrating the shadow and experiencing the depths of the underworld to achieve complete wholeness.'
+  }
+];
+
+const EGYPTIAN_SYSTEMS = [
+  {
+    title: 'Ma\'at (Truth, Balance, Order)',
+    content: 'The ancient Egyptian concept of truth, balance, order, harmony, law, morality, and justice. It is the cosmic order that prevents the universe from returning to chaos.',
+    source: 'The Pyramid Texts',
+    theologyOfBeauty: 'Symmetry, balance, and harmony in both art and life are the highest expressions of divine truth.'
+  },
+  {
+    title: 'The Heka (Magic/Divine Speech)',
+    content: 'The activation of the Ka (vital spark) through authoritative speech. It is the underlying force of the universe that allows for creation and transformation.',
+    source: 'The Coffin Texts',
+    theologyOfBeauty: 'Words have physical weight and power. The beauty of a spell lies in its precise articulation and the intention behind it.'
+  }
+];
+
 export default function AncientPaths({ lang, dna, setDna }: { lang: Language, dna: SpiritualDNA, setDna: (d: SpiritualDNA) => void }) {
-  const [activeTab, setActiveTab] = useState<'runes' | 'orthodox'>('runes');
+  const [activeTab, setActiveTab] = useState<'runes' | 'orthodox' | 'sumerian' | 'egyptian'>('runes');
 
   const handleRuneClick = (rune: Rune) => {
     setDna({
@@ -62,17 +92,17 @@ export default function AncientPaths({ lang, dna, setDna }: { lang: Language, dn
     });
   };
 
-  const handleTeachingClick = (teaching: OrthodoxTeaching) => {
+  const handleTeachingClick = (teaching: any, type: string) => {
     setDna({
       ...dna,
       mysticismLevel: Math.min(100, dna.mysticismLevel + 1),
       xp: dna.xp + 15,
-      recentThemes: [...new Set([...dna.recentThemes, `Orthodox: ${teaching.title}`])]
+      recentThemes: [...new Set([...dna.recentThemes, `${type}: ${teaching.title}`])]
     });
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
+    <div className="max-w-6xl mx-auto px-4 py-12">
       <header className="text-center mb-16">
         <h1 className="text-5xl font-kufic text-gold-500 mb-4">المسارات القديمة</h1>
         <p className="text-xs font-mono uppercase tracking-[0.4em] text-gold-500/60">
@@ -80,29 +110,47 @@ export default function AncientPaths({ lang, dna, setDna }: { lang: Language, dn
         </p>
       </header>
 
-      <div className="flex justify-center gap-4 mb-16">
+      <div className="flex flex-wrap justify-center gap-4 mb-16">
         <button
           onClick={() => setActiveTab('runes')}
           className={cn(
-            "px-8 py-4 rounded-3xl font-bold text-sm transition-all flex items-center gap-3",
-            activeTab === 'runes' ? "bg-gold-500 text-emerald-950 shadow-xl" : "bg-white/5 text-gold-500/60 border border-gold-500/10"
+            "px-6 py-3 rounded-3xl font-bold text-sm transition-all flex items-center gap-3",
+            activeTab === 'runes' ? "bg-gold-500 text-emerald-950 shadow-xl" : "bg-white/5 text-gold-500/60 border border-gold-500/10 hover:bg-white/10"
           )}
         >
-          <Zap size={18} /> {lang === 'ar' ? 'الموسوعة الرونية' : 'Runic Encyclopedia'}
+          <Zap size={16} /> {lang === 'ar' ? 'الموسوعة الرونية' : 'Runic Encyclopedia'}
         </button>
         <button
           onClick={() => setActiveTab('orthodox')}
           className={cn(
-            "px-8 py-4 rounded-3xl font-bold text-sm transition-all flex items-center gap-3",
-            activeTab === 'orthodox' ? "bg-gold-500 text-emerald-950 shadow-xl" : "bg-white/5 text-gold-500/60 border border-gold-500/10"
+            "px-6 py-3 rounded-3xl font-bold text-sm transition-all flex items-center gap-3",
+            activeTab === 'orthodox' ? "bg-gold-500 text-emerald-950 shadow-xl" : "bg-white/5 text-gold-500/60 border border-gold-500/10 hover:bg-white/10"
           )}
         >
-          <Shield size={18} /> {lang === 'ar' ? 'التصوف الأرثوذكسي' : 'Orthodox Mysticism'}
+          <Shield size={16} /> {lang === 'ar' ? 'التصوف الأرثوذكسي' : 'Orthodox Mysticism'}
+        </button>
+        <button
+          onClick={() => setActiveTab('sumerian')}
+          className={cn(
+            "px-6 py-3 rounded-3xl font-bold text-sm transition-all flex items-center gap-3",
+            activeTab === 'sumerian' ? "bg-gold-500 text-emerald-950 shadow-xl" : "bg-white/5 text-gold-500/60 border border-gold-500/10 hover:bg-white/10"
+          )}
+        >
+          <Scroll size={16} /> {lang === 'ar' ? 'الحكمة السومرية' : 'Sumerian Wisdom'}
+        </button>
+        <button
+          onClick={() => setActiveTab('egyptian')}
+          className={cn(
+            "px-6 py-3 rounded-3xl font-bold text-sm transition-all flex items-center gap-3",
+            activeTab === 'egyptian' ? "bg-gold-500 text-emerald-950 shadow-xl" : "bg-white/5 text-gold-500/60 border border-gold-500/10 hover:bg-white/10"
+          )}
+        >
+          <Sun size={16} /> {lang === 'ar' ? 'الأسرار المصرية' : 'Egyptian Mysteries'}
         </button>
       </div>
 
       <AnimatePresence mode="wait">
-        {activeTab === 'runes' ? (
+        {activeTab === 'runes' && (
           <motion.div
             key="runes"
             initial={{ opacity: 0, x: -20 }}
@@ -150,7 +198,9 @@ export default function AncientPaths({ lang, dna, setDna }: { lang: Language, dn
               </div>
             ))}
           </motion.div>
-        ) : (
+        )}
+        
+        {activeTab === 'orthodox' && (
           <motion.div
             key="orthodox"
             initial={{ opacity: 0, x: 20 }}
@@ -161,11 +211,97 @@ export default function AncientPaths({ lang, dna, setDna }: { lang: Language, dn
             {ORTHODOX_TEACHINGS.map((teaching) => (
               <div 
                 key={teaching.title} 
-                onClick={() => handleTeachingClick(teaching)}
+                onClick={() => handleTeachingClick(teaching, 'Orthodox')}
                 className="bg-white/5 backdrop-blur-xl rounded-[3rem] p-10 border border-gold-500/20 shadow-2xl relative overflow-hidden cursor-pointer hover:border-gold-500/40 transition-all"
               >
                 <div className="absolute top-0 right-0 p-12 opacity-5">
                   <Shield size={140} className="text-gold-500" />
+                </div>
+
+                <div className="relative z-10 space-y-8">
+                  <div>
+                    <h3 className="text-3xl font-kufic text-gold-500 mb-6">{teaching.title}</h3>
+                    <div className="p-8 bg-emerald-900/40 rounded-[2.5rem] border border-gold-500/10">
+                      <p className="text-cream-50 text-xl leading-relaxed font-serif italic">{teaching.content}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 mb-3 flex items-center gap-2">
+                      <Palette size={12} /> {lang === 'ar' ? 'لاهوت الجمال' : 'Theology of Beauty'}
+                    </h4>
+                    <p className="text-gold-200/80 leading-relaxed font-serif">{teaching.theologyOfBeauty}</p>
+                  </div>
+
+                  <div className="pt-6 border-t border-gold-500/10 flex justify-between items-center">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-gold-500/40">Source: {teaching.source}</span>
+                    <Map size={20} className="text-gold-500/20" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        )}
+
+        {activeTab === 'sumerian' && (
+          <motion.div
+            key="sumerian"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="grid grid-cols-1 gap-12"
+          >
+            {SUMERIAN_SYSTEMS.map((teaching) => (
+              <div 
+                key={teaching.title} 
+                onClick={() => handleTeachingClick(teaching, 'Sumerian')}
+                className="bg-white/5 backdrop-blur-xl rounded-[3rem] p-10 border border-gold-500/20 shadow-2xl relative overflow-hidden cursor-pointer hover:border-gold-500/40 transition-all"
+              >
+                <div className="absolute top-0 right-0 p-12 opacity-5">
+                  <Scroll size={140} className="text-gold-500" />
+                </div>
+
+                <div className="relative z-10 space-y-8">
+                  <div>
+                    <h3 className="text-3xl font-kufic text-gold-500 mb-6">{teaching.title}</h3>
+                    <div className="p-8 bg-emerald-900/40 rounded-[2.5rem] border border-gold-500/10">
+                      <p className="text-cream-50 text-xl leading-relaxed font-serif italic">{teaching.content}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-gold-500/50 mb-3 flex items-center gap-2">
+                      <Palette size={12} /> {lang === 'ar' ? 'لاهوت الجمال' : 'Theology of Beauty'}
+                    </h4>
+                    <p className="text-gold-200/80 leading-relaxed font-serif">{teaching.theologyOfBeauty}</p>
+                  </div>
+
+                  <div className="pt-6 border-t border-gold-500/10 flex justify-between items-center">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-gold-500/40">Source: {teaching.source}</span>
+                    <Map size={20} className="text-gold-500/20" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        )}
+
+        {activeTab === 'egyptian' && (
+          <motion.div
+            key="egyptian"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="grid grid-cols-1 gap-12"
+          >
+            {EGYPTIAN_SYSTEMS.map((teaching) => (
+              <div 
+                key={teaching.title} 
+                onClick={() => handleTeachingClick(teaching, 'Egyptian')}
+                className="bg-white/5 backdrop-blur-xl rounded-[3rem] p-10 border border-gold-500/20 shadow-2xl relative overflow-hidden cursor-pointer hover:border-gold-500/40 transition-all"
+              >
+                <div className="absolute top-0 right-0 p-12 opacity-5">
+                  <Eye size={140} className="text-gold-500" />
                 </div>
 
                 <div className="relative z-10 space-y-8">

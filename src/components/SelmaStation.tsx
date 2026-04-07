@@ -1,81 +1,75 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Language, SpiritualDNA } from '../types';
-import { SELMA_POEMS, DAILY_WIRDS } from '../constants';
-import { Shield, Heart, Sparkles, Moon } from 'lucide-react';
+import { Shield, Heart, Sparkles, Moon, Loader2 } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { geminiService } from '../services/geminiService';
+import ReactMarkdown from 'react-markdown';
 
 export default function SelmaStation({ lang, dna }: { lang: Language, dna: SpiritualDNA }) {
-  const [greeting, setGreeting] = useState('');
-  const [wird, setWird] = useState(DAILY_WIRDS[0]);
+  const [stationContent, setStationContent] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const randomPoem = SELMA_POEMS[Math.floor(Math.random() * SELMA_POEMS.length)];
-    setGreeting(randomPoem);
-  }, []);
+    const fetchStation = async () => {
+      setIsLoading(true);
+      try {
+        const content = await geminiService.getSelmaStation(dna);
+        setStationContent(content);
+      } catch (error) {
+        console.error("Station Error:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchStation();
+  }, [dna]);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <header className="text-center mb-10">
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      <header className="text-center mb-16">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="inline-block mb-4"
+          className="inline-block mb-6"
         >
-          <div className="w-16 h-16 rounded-full bg-emerald-900 flex items-center justify-center text-gold-500 shadow-xl border border-gold-500/20">
-            <Moon size={28} />
+          <div className="w-24 h-24 rounded-full bg-emerald-950 flex items-center justify-center text-gold-500 shadow-2xl border border-gold-500/30 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-20"></div>
+            <Moon size={40} className="relative z-10" />
           </div>
         </motion.div>
-        <h1 className="text-3xl font-kufic text-emerald-900 mb-4">مقام سلمى</h1>
-        <div className="bg-white p-6 rounded-[2rem] shadow-md border border-gold-500/10 mb-6">
-          <p className="text-lg font-serif italic text-emerald-800 leading-relaxed whitespace-pre-wrap">
-            {greeting}
-          </p>
-        </div>
+        <h1 className="text-5xl font-serif italic text-gold-500 mb-4 tracking-tight">
+          {lang === 'ar' ? 'مقام سلمى' : "Selma's Station"}
+        </h1>
+        <p className="text-xl text-gold-500/60 font-serif max-w-2xl mx-auto">
+          {lang === 'ar' 
+            ? 'تتبع الروح الخوارزمي وإدخال الجريموير اليومي الفريد.' 
+            : 'Algorithmic soul-tracking and daily unique Grimoire entry.'}
+        </p>
       </header>
 
-      <div className="space-y-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-emerald-950 text-cream-50 p-8 rounded-[2.5rem] shadow-xl border border-gold-500/10"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <Shield className="text-gold-500" size={24} />
-            <h2 className="text-xl font-kufic text-gold-500">{lang === 'ar' ? 'ورد اليوم' : 'Daily Wird'}</h2>
+      <div className="space-y-8">
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-32">
+            <Loader2 className="text-gold-500 animate-spin mb-6" size={48} />
+            <p className="text-gold-500/60 font-serif italic text-xl animate-pulse">
+              {lang === 'ar' ? 'المعماري يقرأ روحك...' : 'The Architect is reading your soul...'}
+            </p>
           </div>
-          <h3 className="text-base font-bold mb-2">{wird.title}</h3>
-          <p className="text-sm mb-4 leading-relaxed opacity-80">{wird.practice}</p>
-          <div className="bg-emerald-900/40 p-4 rounded-xl border-r-4 border-gold-500 italic text-[10px] leading-relaxed">
-            {wird.spiritualContext}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white p-8 rounded-[2.5rem] shadow-md border border-gold-500/10"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <Heart className="text-emerald-900" size={24} />
-            <h2 className="text-xl font-kufic text-emerald-900">{lang === 'ar' ? 'نمو الروح' : 'Soul Growth'}</h2>
-          </div>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center border-b border-emerald-50 pb-3">
-              <span className="text-emerald-700 text-xs">{lang === 'ar' ? 'مستوى السكينة' : 'Tranquility Level'}</span>
-              <span className="text-gold-600 font-bold text-sm">85%</span>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="luxury-card p-10 md:p-16 bg-white/5 border-gold-500/20 relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
+              <Sparkles size={120} className="text-gold-500" />
             </div>
-            <div className="flex justify-between items-center border-b border-emerald-50 pb-3">
-              <span className="text-emerald-700 text-xs">{lang === 'ar' ? 'أيام الالتزام' : 'Commitment Days'}</span>
-              <span className="text-gold-600 font-bold text-sm">12</span>
+            <div className="markdown-body text-lg font-serif text-cream-50/90 leading-relaxed relative z-10">
+              <ReactMarkdown>{stationContent}</ReactMarkdown>
             </div>
-            <div className="p-4 bg-emerald-50 rounded-xl text-[11px] text-emerald-800 italic leading-relaxed">
-              {lang === 'ar' 
-                ? "«أنتِ تتقدمين بخطى ثابتة نحو السلام الداخلي يا سلمى»"
-                : "«You are moving with steady steps towards inner peace, Selma»"}
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
       </div>
     </div>
   );

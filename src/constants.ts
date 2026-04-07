@@ -63,7 +63,56 @@ export const RUNES: Rune[] = [
     name: 'Raido',
     meaning: 'Journey, Rhythm, Evolution.',
     psychologicalState: 'The movement of the soul through the cycles of life.'
-  }
+  },
+  { symbol: 'ᚲ', name: 'Kenaz', meaning: 'Torch, Knowledge, Passion.', psychologicalState: 'Illumination of the mind and creative awakening.', phonetics: 'K', hiddenHistory: 'The controlled fire of the artisan and the seeker.', manifestationRitual: 'Light a candle and focus on a specific creative goal.' },
+  { symbol: 'ᚷ', name: 'Gebo', meaning: 'Gift, Partnership, Exchange.', psychologicalState: 'Balance in relationships and the flow of giving and receiving.', phonetics: 'G', hiddenHistory: 'The sacred pact between humans and the divine.', manifestationRitual: 'Offer a small gift to nature or a loved one without expectation.' },
+  { symbol: 'ᚹ', name: 'Wunjo', meaning: 'Joy, Harmony, Fellowship.', psychologicalState: 'Emotional well-being and alignment with one\'s true will.', phonetics: 'W', hiddenHistory: 'The realization of desires and the peace of the clan.', manifestationRitual: 'Meditate on a moment of pure happiness to attract more.' },
+  { symbol: 'ᚺ', name: 'Hagalaz', meaning: 'Hail, Disruption, Radical Change.', psychologicalState: 'Embracing chaos as a catalyst for necessary transformation.', phonetics: 'H', hiddenHistory: 'The destructive forces of nature that clear the path for new growth.', manifestationRitual: 'Write down what you need to release and safely burn the paper.' },
+  { symbol: 'ᚾ', name: 'Nauthiz', meaning: 'Need, Friction, Resistance.', psychologicalState: 'Finding strength through adversity and recognizing true necessities.', phonetics: 'N', hiddenHistory: 'The fire kindled by friction in times of desperate need.', manifestationRitual: 'Fasting or abstaining from a habit to build willpower.' },
+  { symbol: 'ᛁ', name: 'Isa', meaning: 'Ice, Stillness, Concentration.', psychologicalState: 'Patience, turning inward, and psychological preservation.', phonetics: 'I', hiddenHistory: 'The primordial ice of Niflheim, holding potential energy.', manifestationRitual: 'Sit in complete stillness for 10 minutes, observing your breath.' },
+  { symbol: 'ᛃ', name: 'Jera', meaning: 'Year, Harvest, Cycles.', psychologicalState: 'Patience for the natural unfolding of events and reaping rewards.', phonetics: 'J/Y', hiddenHistory: 'The agricultural cycle and the cosmic wheel of time.', manifestationRitual: 'Plant a seed and care for it as a symbol of your goals.' },
+  { symbol: 'ᛇ', name: 'Eihwaz', meaning: 'Yew Tree, Axis Mundi, Transformation.', psychologicalState: 'Facing mortality and the transition between states of being.', phonetics: 'Ei', hiddenHistory: 'Yggdrasil, the world tree connecting the realms of the living and the dead.', manifestationRitual: 'Meditate on your connection to your ancestors and the earth.' },
+  { symbol: 'ᛈ', name: 'Perthro', meaning: 'Dice Cup, Fate, Mystery.', psychologicalState: 'Embracing the unknown and the hidden aspects of the self.', phonetics: 'P', hiddenHistory: 'The Norns weaving the web of Wyrd (fate) and the element of chance.', manifestationRitual: 'Draw a single rune or tarot card to reveal hidden influences.' },
+  { symbol: 'ᛊ', name: 'Sowilo', meaning: 'Sun, Success, Life Force.', psychologicalState: 'Clarity, confidence, and the realization of one\'s true purpose.', phonetics: 'S', hiddenHistory: 'The guiding light of the sun chariot and the victory of light over darkness.', manifestationRitual: 'Spend time in sunlight, visualizing it filling you with energy.' },
+  { symbol: 'ᛏ', name: 'Tiwaz', meaning: 'Tyr, Justice, Sacrifice.', psychologicalState: 'Courage, honor, and the willingness to sacrifice for a greater good.', phonetics: 'T', hiddenHistory: 'The god Tyr sacrificing his hand to bind the wolf Fenrir.', manifestationRitual: 'Make a difficult but necessary decision with unwavering resolve.' },
+  { symbol: 'ᛒ', name: 'Berkano', meaning: 'Birch, Birth, Renewal.', psychologicalState: 'Nurturing new beginnings and emotional healing.', phonetics: 'B', hiddenHistory: 'The Earth Mother and the regenerative power of nature.', manifestationRitual: 'Start a new project or habit that nurtures your well-being.' },
+  { symbol: 'ᛖ', name: 'Ehwaz', meaning: 'Horse, Trust, Teamwork.', psychologicalState: 'Harmony between the conscious and subconscious minds.', phonetics: 'E', hiddenHistory: 'The sacred bond between rider and horse, representing mutual progress.', manifestationRitual: 'Collaborate with someone on a shared goal, focusing on trust.' },
+  { symbol: 'ᛗ', name: 'Mannaz', meaning: 'Mankind, Self, Interdependence.', psychologicalState: 'Self-awareness and understanding one\'s place within the collective.', phonetics: 'M', hiddenHistory: 'The divine spark within humanity and the web of social connections.', manifestationRitual: 'Perform an act of service for your community.' },
+  { symbol: 'ᛚ', name: 'Laguz', meaning: 'Water, Intuition, Flow.', psychologicalState: 'Connecting with the subconscious and emotional depths.', phonetics: 'L', hiddenHistory: 'The primordial waters of creation and the realm of dreams.', manifestationRitual: 'Take a ritual bath with sea salt to cleanse your energy.' },
+  { symbol: 'ᛜ', name: 'Ingwaz', meaning: 'Ing, Seed, Gestation.', psychologicalState: 'Internal growth, storing energy, and preparing for a breakthrough.', phonetics: 'Ng', hiddenHistory: 'The god Ing and the potential energy contained within a seed.', manifestationRitual: 'Spend time alone in reflection to incubate a new idea.' },
+  { symbol: 'ᛞ', name: 'Dagaz', meaning: 'Day, Dawn, Awakening.', psychologicalState: 'A sudden realization, clarity, and the integration of opposites.', phonetics: 'D', hiddenHistory: 'The mystical moment of twilight and the balance of light and dark.', manifestationRitual: 'Wake up before dawn and watch the sunrise, setting intentions.' },
+  { symbol: 'ᛟ', name: 'Othala', meaning: 'Estate, Heritage, Ancestry.', psychologicalState: 'Connection to roots, spiritual inheritance, and a sense of belonging.', phonetics: 'O', hiddenHistory: 'The ancestral home and the spiritual power passed down through generations.', manifestationRitual: 'Create an altar honoring your ancestors or cultural heritage.' },
+  { symbol: 'ᚪ', name: 'Ac', meaning: 'Oak, Strength, Endurance.', psychologicalState: 'Steadfastness and the ability to weather storms.', phonetics: 'A', hiddenHistory: 'The sacred oak tree, a symbol of enduring power and resilience.', manifestationRitual: 'Lean against a large tree and absorb its grounding energy.' },
+  { symbol: 'ᚩ', name: 'Os', meaning: 'God, Mouth, Divine Speech.', psychologicalState: 'Inspiration and the power of articulate expression.', phonetics: 'O', hiddenHistory: 'The breath of life and the creative power of the spoken word.', manifestationRitual: 'Chant or sing to clear your throat chakra and express your truth.' },
+  { symbol: 'ᚣ', name: 'Yr', meaning: 'Bow, Focus, Skill.', psychologicalState: 'Concentration and the precise application of effort.', phonetics: 'Y', hiddenHistory: 'The archer\'s skill and the tension required to launch an arrow.', manifestationRitual: 'Focus intensely on a single task without any distractions.' },
+  { symbol: 'ᛡ', name: 'Ior', meaning: 'Serpent, Boundaries, Dual Nature.', psychologicalState: 'Navigating complex situations and understanding boundaries.', phonetics: 'Io', hiddenHistory: 'The Midgard Serpent, representing the boundaries of the known world.', manifestationRitual: 'Draw a physical or energetic boundary to protect your space.' },
+  { symbol: 'ᛠ', name: 'Ear', meaning: 'Grave, Endings, Transformation.', psychologicalState: 'Acceptance of mortality and the necessity of endings for new beginnings.', phonetics: 'Ea', hiddenHistory: 'The inevitable return to the earth and the cycle of life and death.', manifestationRitual: 'Bury something that represents a habit you want to end.' },
+  { symbol: 'ᛢ', name: 'Cweorth', meaning: 'Fire Twirl, Ritual Fire, Purification.', psychologicalState: 'Intense purification and the burning away of impurities.', phonetics: 'Cw', hiddenHistory: 'The sacred fire used in rituals and cremations.', manifestationRitual: 'Safely burn herbs like sage or cedar to cleanse your environment.' },
+  { symbol: 'ᛣ', name: 'Calc', meaning: 'Chalice, Offering, Emptiness.', psychologicalState: 'Receptivity and the willingness to be filled with divine inspiration.', phonetics: 'K', hiddenHistory: 'The ritual cup used for offerings and the concept of the holy grail.', manifestationRitual: 'Pour a libation of water or wine onto the earth as an offering.' },
+  { symbol: 'ᛥ', name: 'Stan', meaning: 'Stone, Foundation, Obstacle.', psychologicalState: 'Grounding, stability, and overcoming blockages.', phonetics: 'St', hiddenHistory: 'The standing stones used for ancient rituals and marking sacred sites.', manifestationRitual: 'Hold a stone while meditating to ground your energy.' },
+  { symbol: 'ᛤ', name: 'Gar', meaning: 'Spear, Center, Mystery.', psychologicalState: 'Focusing on the core truth and the central axis of one\'s being.', phonetics: 'G', hiddenHistory: 'Odin\'s spear Gungnir, representing the world tree and the center of the cosmos.', manifestationRitual: 'Visualize a spear of light aligning your chakras from crown to root.' },
+  { symbol: 'ᛯ', name: 'Wolfsangel', meaning: 'Wolf Hook, Defense, Capture.', psychologicalState: 'Protecting oneself from predatory forces and setting traps for negativity.', phonetics: 'W', hiddenHistory: 'An ancient symbol used to ward off wolves and evil spirits.', manifestationRitual: 'Visualize a hook catching and neutralizing negative thoughts.' },
+  { symbol: 'ᛰ', name: 'Ziu', meaning: 'Sky God, Justice, Order.', psychologicalState: 'Aligning with cosmic law and seeking truth.', phonetics: 'Z', hiddenHistory: 'An older Germanic name for Tyr, representing the original sky father.', manifestationRitual: 'Look up at the sky and ask for guidance in a matter of justice.' },
+  { symbol: 'ᛱ', name: 'Erda', meaning: 'Earth Mother, Nurturing, Grounding.', psychologicalState: 'Connecting with the physical body and the natural world.', phonetics: 'E', hiddenHistory: 'The personification of the earth and the source of all life.', manifestationRitual: 'Walk barefoot on the earth to connect with its grounding energy.' },
+  { symbol: 'ᛲ', name: 'Ulf', meaning: 'Wolf, Wildness, Instinct.', psychologicalState: 'Embracing one\'s primal nature and intuition.', phonetics: 'U', hiddenHistory: 'The wolf as a symbol of both destruction and fierce loyalty.', manifestationRitual: 'Spend time in a wild, untamed natural environment.' },
+  { symbol: 'ᛳ', name: 'Sol', meaning: 'Sun, Energy, Radiance.', psychologicalState: 'Expressing oneself fully and shining one\'s light.', phonetics: 'S', hiddenHistory: 'A variant of Sowilo, emphasizing the life-giving power of the sun.', manifestationRitual: 'Create a piece of art that expresses your inner radiance.' },
+  { symbol: 'ᛴ', name: 'Tyr', meaning: 'Warrior, Courage, Action.', psychologicalState: 'Taking decisive action and fighting for what is right.', phonetics: 'T', hiddenHistory: 'A variant of Tiwaz, focusing on the martial aspect of the god.', manifestationRitual: 'Engage in a physical activity that challenges your limits.' },
+  { symbol: 'ᛵ', name: 'Bjarkan', meaning: 'Birch Twig, Healing, Growth.', psychologicalState: 'Facilitating healing and nurturing new ideas.', phonetics: 'B', hiddenHistory: 'A variant of Berkano, emphasizing the medicinal properties of the birch.', manifestationRitual: 'Drink a healing herbal tea while focusing on recovery.' },
+  { symbol: 'ᛶ', name: 'Madr', meaning: 'Human, Society, Connection.', psychologicalState: 'Understanding social dynamics and one\'s role in the community.', phonetics: 'M', hiddenHistory: 'A variant of Mannaz, focusing on the social aspect of humanity.', manifestationRitual: 'Engage in a meaningful conversation with a stranger.' },
+  { symbol: 'ᛷ', name: 'Logr', meaning: 'Water, Emotion, Cleansing.', psychologicalState: 'Allowing emotions to flow and releasing stagnant energy.', phonetics: 'L', hiddenHistory: 'A variant of Laguz, emphasizing the purifying nature of water.', manifestationRitual: 'Cry intentionally to release pent-up emotions.' },
+  { symbol: 'ᛸ', name: 'Yr (Younger)', meaning: 'Yew, Death, Transition.', psychologicalState: 'Facing the end of a cycle and preparing for rebirth.', phonetics: 'Y', hiddenHistory: 'A Younger Futhark rune associated with the yew tree and mortality.', manifestationRitual: 'Write a letter to your past self, acknowledging how you have changed.' },
+  { symbol: '᛹', name: 'Kaun', meaning: 'Ulcer, Disease, Transformation through Pain.', psychologicalState: 'Learning from suffering and healing deep wounds.', phonetics: 'K', hiddenHistory: 'A Younger Futhark rune representing the painful process of healing.', manifestationRitual: 'Acknowledge a painful memory and actively work to reframe it.' },
+  { symbol: '᛺', name: 'Hagall', meaning: 'Hail, Destruction, Clearing.', psychologicalState: 'Allowing old structures to collapse to make way for the new.', phonetics: 'H', hiddenHistory: 'A Younger Futhark variant of Hagalaz, focusing on sudden change.', manifestationRitual: 'Declutter a space in your home to symbolize clearing mental clutter.' },
+  { symbol: '᛻', name: 'Naudr', meaning: 'Need, Constraint, Endurance.', psychologicalState: 'Finding resilience in difficult circumstances.', phonetics: 'N', hiddenHistory: 'A Younger Futhark variant of Nauthiz, emphasizing the necessity of hardship.', manifestationRitual: 'Practice gratitude for the challenges that have made you stronger.' },
+  { symbol: '᛼', name: 'Iss', meaning: 'Ice, Stagnation, Focus.', psychologicalState: 'Using periods of inactivity for deep reflection.', phonetics: 'I', hiddenHistory: 'A Younger Futhark variant of Isa, focusing on the stillness of winter.', manifestationRitual: 'Take a cold shower to practice mental focus and physical resilience.' },
+  { symbol: '᛽', name: 'Ar', meaning: 'Year, Plenty, Reward.', psychologicalState: 'Enjoying the fruits of one\'s labor and celebrating success.', phonetics: 'A', hiddenHistory: 'A Younger Futhark variant of Jera, emphasizing the harvest.', manifestationRitual: 'Host a small celebration to acknowledge a recent achievement.' },
+  { symbol: '᛾', name: 'Reið', meaning: 'Ride, Journey, Progress.', psychologicalState: 'Moving forward with purpose and direction.', phonetics: 'R', hiddenHistory: 'A Younger Futhark variant of Raido, focusing on the act of traveling.', manifestationRitual: 'Take a journey to a place you have never been before.' },
+  { symbol: '᛿', name: 'Týr', meaning: 'God, Victory, Honor.', psychologicalState: 'Acting with integrity and striving for excellence.', phonetics: 'T', hiddenHistory: 'A Younger Futhark variant of Tiwaz, emphasizing the divine aspect of victory.', manifestationRitual: 'Commit to a personal code of honor and act accordingly.' },
+  { symbol: 'ᜀ', name: 'Áss', meaning: 'God, Breath, Inspiration.', psychologicalState: 'Connecting with divine inspiration and higher consciousness.', phonetics: 'A', hiddenHistory: 'A variant of Ansuz, focusing on the breath of the gods.', manifestationRitual: 'Practice deep breathing exercises to clear the mind.' },
+  { symbol: 'ᜁ', name: 'Óss', meaning: 'Mouth, Speech, Creation.', psychologicalState: 'Using the power of words to manifest reality.', phonetics: 'O', hiddenHistory: 'A variant of Os, emphasizing the creative power of sound.', manifestationRitual: 'Speak your goals aloud with conviction and clarity.' },
+  { symbol: 'ᜂ', name: 'Kálkr', meaning: 'Chalice, Receptivity, Holy Grail.', psychologicalState: 'Opening oneself to receive divine grace.', phonetics: 'K', hiddenHistory: 'A variant of Calc, focusing on the sacred vessel.', manifestationRitual: 'Meditate with open hands, visualizing receiving divine energy.' },
+  { symbol: 'ᜃ', name: 'Stán', meaning: 'Stone, Foundation, Permanence.', psychologicalState: 'Building a solid foundation for future endeavors.', phonetics: 'St', hiddenHistory: 'A variant of Stan, emphasizing the enduring nature of stone.', manifestationRitual: 'Create a physical representation of your goals using stones.' },
+  { symbol: 'ᜄ', name: 'Gár', meaning: 'Spear, Focus, Penetration.', psychologicalState: 'Piercing through illusions to find the core truth.', phonetics: 'G', hiddenHistory: 'A variant of Gar, focusing on the sharp point of the spear.', manifestationRitual: 'Write down a complex problem and identify its single root cause.' }
 ];
 
 export const ORTHODOX_TEACHINGS: OrthodoxTeaching[] = [
@@ -80,7 +129,26 @@ export const ORTHODOX_TEACHINGS: OrthodoxTeaching[] = [
   {
     title: 'Theosis (Divinization)',
     content: 'The process of becoming like God through grace and participation in His divine energies.',
-    source: 'St. Athanasius'
+    source: 'St. Athanasius',
+    theologyOfBeauty: 'The transfiguration of the human person into a vessel of divine light.'
+  },
+  {
+    title: 'Philokalia (Love of the Beautiful)',
+    content: 'A collection of texts written between the 4th and 15th centuries by spiritual masters of the Eastern Orthodox Church.',
+    source: 'St. Nikodemos of the Holy Mountain',
+    theologyOfBeauty: 'True beauty is found in the purification of the intellect and the heart.'
+  },
+  {
+    title: 'Icon Veneration',
+    content: 'The theological justification for the veneration of holy icons as windows to the divine.',
+    source: 'St. John of Damascus',
+    theologyOfBeauty: 'Matter is not evil; it can be sanctified to reveal the uncreated beauty of God.'
+  },
+  {
+    title: 'The Divine Liturgy',
+    content: 'The primary worship service of the Orthodox Church, seen as a participation in the heavenly banquet.',
+    source: 'St. John Chrysostom',
+    theologyOfBeauty: 'The liturgy is the highest expression of beauty, uniting heaven and earth in worship.'
   }
 ];
 
@@ -287,6 +355,14 @@ export const BOOKS: Book[] = [
     category: 'Philosophy',
     summary: 'رواية رمزية عن اكتشاف الذات وتحقيق الأحلام.',
     coverUrl: 'https://picsum.photos/seed/alchemist/400/600'
+  },
+  {
+    id: '5',
+    title: 'The Kybalion',
+    author: 'The Three Initiates',
+    category: 'Philosophy',
+    summary: 'A study of the Hermetic Philosophy of ancient Egypt and Greece, exploring the core principles of the universe and divine laws.',
+    coverUrl: 'https://picsum.photos/seed/kybalion/400/600'
   }
 ];
 
