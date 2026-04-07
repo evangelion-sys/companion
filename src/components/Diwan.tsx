@@ -5,7 +5,7 @@ import { POEMS } from '../constants';
 import { Search, Copy, Check, Languages, Volume2, Loader2, Sparkles, Scroll, Palette, Music } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { GoogleGenAI, Modality } from "@google/genai";
-import { geminiService } from '../services/geminiService';
+import { geminiService, getAI } from '../services/geminiService';
 import ReactMarkdown from 'react-markdown';
 
 export default function Diwan({ lang, dna, setDna }: { lang: Language, dna: SpiritualDNA, setDna: (d: SpiritualDNA) => void }) {
@@ -66,7 +66,7 @@ export default function Diwan({ lang, dna, setDna }: { lang: Language, dna: Spir
     setPlayingId(poem.id);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const ai = getAI();
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
         contents: [{ parts: [{ text: `Read this Arabic poem with deep emotion and proper tajweed-like rhythm: ${poem.content}` }] }],
