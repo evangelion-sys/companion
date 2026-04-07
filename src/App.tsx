@@ -19,10 +19,16 @@ import {
   Map,
   Palette,
   Home as HomeIcon,
-  Flame
+  Flame,
+  Zap,
+  Crown,
+  LayoutGrid,
+  MessageSquare,
+  Book,
+  User,
 } from 'lucide-react';
 import { cn } from './lib/utils';
-import { Language } from './types';
+import { Language, SpiritualDNA } from './types';
 
 // Components
 import Home from './components/Home';
@@ -38,7 +44,22 @@ import AncientPaths from './components/AncientPaths';
 import CalligraphyCanvas from './components/CalligraphyCanvas';
 import ShadowFire from './components/ShadowFire';
 
-function Navigation({ lang, setLang }: { lang: Language, setLang: (l: Language) => void }) {
+const DEFAULT_DNA: SpiritualDNA = {
+  lastInteraction: new Date().toISOString(),
+  dominantArchetype: 'Sovereign Sultana',
+  spiritualLevel: 1,
+  sovereigntyScore: 75,
+  mysticismPath: 'Hybrid',
+  recentThemes: ['Divine Command', 'Inner Sanctum'],
+  mysticismLevel: 25,
+  xp: 0,
+  level: 1,
+  shadowIntegration: 30,
+  runicAlignment: ['Uruz', 'Thurisaz'],
+  heartState: 'Sovereign'
+};
+
+function Navigation({ lang, setLang, dna }: { lang: Language, setLang: (l: Language) => void, dna: SpiritualDNA }) {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [calligraphyStyle, setCalligraphyStyle] = useState<'kufic' | 'diwani'>('kufic');
   const location = useLocation();
@@ -48,15 +69,15 @@ function Navigation({ lang, setLang }: { lang: Language, setLang: (l: Language) 
   }, [location.pathname]);
 
   const mainNavItems = [
-    { path: '/', label: lang === 'ar' ? 'الرئيسية' : 'Home', icon: HomeIcon },
+    { path: '/', label: lang === 'ar' ? 'الرئيسية' : 'Sanctuary', icon: HomeIcon },
     { path: '/zahra', label: lang === 'ar' ? 'زهرة' : 'Zahra', icon: MessageCircle },
-    { path: '/shadow', label: lang === 'ar' ? 'الأحمر' : 'Shadow', icon: Flame },
+    { path: '/shadow', label: lang === 'ar' ? 'السيادة' : 'Sovereignty', icon: Flame },
     { path: '/qareen', label: lang === 'ar' ? 'القرين' : 'Qareen', icon: Compass },
   ];
 
   const moreNavItems = [
-    { path: '/nafas', label: lang === 'ar' ? 'نفس سلمى' : 'Selma\'s Breath', icon: Wind },
-    { path: '/selma', label: lang === 'ar' ? 'مقام سلمى' : 'Selma Station', icon: Moon },
+    { path: '/nafas', label: lang === 'ar' ? 'نفس سلمى' : 'Breath', icon: Wind },
+    { path: '/selma', label: lang === 'ar' ? 'مقام سلمى' : 'Station', icon: Moon },
     { path: '/bouqala', label: lang === 'ar' ? 'بوقالات' : 'Bouqala', icon: History },
     { path: '/paths', label: lang === 'ar' ? 'المسارات' : 'Paths', icon: Map },
     { path: '/canvas', label: lang === 'ar' ? 'اللوحة' : 'Canvas', icon: Palette },
@@ -68,53 +89,74 @@ function Navigation({ lang, setLang }: { lang: Language, setLang: (l: Language) 
   return (
     <>
       {/* Top Bar */}
-      <nav className="fixed top-0 w-full z-50 bg-emerald-950/95 backdrop-blur-md border-b border-gold-500/20 text-cream-50 h-14 flex items-center px-4 justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="text-xl font-kufic text-gold-500">الأنيس</span>
+      <nav className="fixed top-0 w-full z-50 bg-emerald-950/95 backdrop-blur-md border-b border-gold-500/20 text-cream-50 h-16 flex items-center px-6 justify-between">
+        <Link to="/" className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full border border-gold-500/30 flex items-center justify-center bg-gold-500/5">
+            <Crown size={20} className="text-gold-500" />
+          </div>
+          <span className="text-2xl font-serif italic text-gold-500 tracking-tight">Al-Anis</span>
         </Link>
         
-        <div className="flex items-center gap-3">
-          <span className={cn(
-            "text-base text-gold-400/80",
-            calligraphyStyle === 'kufic' ? 'font-kufic' : 'font-diwani'
-          )}>
-            {lang === 'ar' ? 'سلمى' : 'Selma'}
-          </span>
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex flex-col items-end">
+            <span className={cn(
+              "text-base text-gold-400/90 leading-none",
+              calligraphyStyle === 'kufic' ? 'font-kufic' : 'font-diwani'
+            )}>
+              {lang === 'ar' ? 'سلمى' : 'Sultana Selma'}
+            </span>
+            <div className="flex items-center gap-2 mt-1">
+              <div className="w-24 h-1 bg-gold-500/10 rounded-full overflow-hidden">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${dna.mysticismLevel}%` }}
+                  className="h-full bg-gold-500"
+                />
+              </div>
+              <span className="text-[8px] font-mono text-gold-500/50 uppercase tracking-widest">Mysticism {dna.mysticismLevel}%</span>
+            </div>
+          </div>
           <button 
             onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
-            className="p-2 text-gold-500/70 active:scale-95 transition-transform"
+            className="p-2 text-gold-500/70 hover:text-gold-500 transition-colors"
           >
-            <Languages size={20} />
+            <Languages size={22} />
           </button>
         </div>
       </nav>
 
       {/* Bottom Nav Bar */}
-      <nav className="fixed bottom-0 w-full z-50 bg-emerald-950/98 backdrop-blur-xl border-t border-gold-500/20 text-cream-50 h-16 pb-safe">
-        <div className="flex items-center justify-around h-full px-2">
+      <nav className="fixed bottom-0 w-full z-50 bg-emerald-950/98 backdrop-blur-xl border-t border-gold-500/20 text-cream-50 h-20 pb-safe">
+        <div className="flex items-center justify-around h-full px-4">
           {mainNavItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 flex-1 h-full transition-all active:scale-90",
-                location.pathname === item.path ? "text-gold-500" : "text-cream-50/60"
+                "flex flex-col items-center justify-center gap-1.5 flex-1 h-full transition-all active:scale-90 relative group",
+                location.pathname === item.path ? "text-gold-500" : "text-cream-50/40"
               )}
             >
-              <item.icon size={22} strokeWidth={location.pathname === item.path ? 2.5 : 2} />
-              <span className="text-[10px] font-medium">{item.label}</span>
+              {location.pathname === item.path && (
+                <motion.div 
+                  layoutId="nav-glow"
+                  className="absolute inset-0 bg-gold-500/5 blur-xl rounded-full"
+                />
+              )}
+              <item.icon size={24} strokeWidth={location.pathname === item.path ? 2 : 1.5} />
+              <span className="text-[10px] font-bold uppercase tracking-widest opacity-80">{item.label}</span>
             </Link>
           ))}
           
           <button
             onClick={() => setIsMoreOpen(!isMoreOpen)}
             className={cn(
-              "flex flex-col items-center justify-center gap-1 flex-1 h-full transition-all active:scale-90",
-              isMoreOpen ? "text-gold-500" : "text-cream-50/60"
+              "flex flex-col items-center justify-center gap-1.5 flex-1 h-full transition-all active:scale-90 relative",
+              isMoreOpen ? "text-gold-500" : "text-cream-50/40"
             )}
           >
-            {isMoreOpen ? <X size={22} /> : <Menu size={22} />}
-            <span className="text-[10px] font-medium">{lang === 'ar' ? 'المزيد' : 'More'}</span>
+            {isMoreOpen ? <X size={24} /> : <Menu size={24} />}
+            <span className="text-[10px] font-bold uppercase tracking-widest opacity-80">{lang === 'ar' ? 'المزيد' : 'More'}</span>
           </button>
         </div>
       </nav>
@@ -166,6 +208,14 @@ function Navigation({ lang, setLang }: { lang: Language, setLang: (l: Language) 
 
 export default function App() {
   const [lang, setLang] = useState<Language>('ar');
+  const [dna, setDna] = useState<SpiritualDNA>(() => {
+    const saved = localStorage.getItem('spiritual_dna');
+    return saved ? JSON.parse(saved) : DEFAULT_DNA;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('spiritual_dna', JSON.stringify(dna));
+  }, [dna]);
 
   useEffect(() => {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -174,24 +224,24 @@ export default function App() {
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
-        <Navigation lang={lang} setLang={setLang} />
+      <div className="min-h-screen flex flex-col bg-emerald-950">
+        <Navigation lang={lang} setLang={setLang} dna={dna} />
         
         <main className="flex-grow pt-14 pb-20">
           <AnimatePresence mode="wait">
             <Routes>
-              <Route path="/" element={<Home lang={lang} />} />
-              <Route path="/nafas" element={<NafasTimeline lang={lang} />} />
-              <Route path="/selma" element={<SelmaStation lang={lang} />} />
-              <Route path="/shadow" element={<ShadowFire lang={lang} />} />
+              <Route path="/" element={<Home lang={lang} dna={dna} setDna={setDna} />} />
+              <Route path="/nafas" element={<NafasTimeline lang={lang} dna={dna} />} />
+              <Route path="/selma" element={<SelmaStation lang={lang} dna={dna} />} />
+              <Route path="/shadow" element={<ShadowFire lang={lang} dna={dna} setDna={setDna} />} />
               <Route path="/bouqala" element={<BouqalaArchive lang={lang} />} />
-              <Route path="/paths" element={<AncientPaths lang={lang} />} />
+              <Route path="/paths" element={<AncientPaths lang={lang} dna={dna} setDna={setDna} />} />
               <Route path="/canvas" element={<CalligraphyCanvas lang={lang} />} />
-              <Route path="/diwan" element={<Diwan lang={lang} />} />
-              <Route path="/fiqh" element={<Fiqh lang={lang} />} />
-              <Route path="/zahra" element={<ChatZahra lang={lang} />} />
-              <Route path="/qareen" element={<ChatQareen lang={lang} />} />
-              <Route path="/library" element={<LibrarySection lang={lang} />} />
+              <Route path="/diwan" element={<Diwan lang={lang} dna={dna} setDna={setDna} />} />
+              <Route path="/fiqh" element={<Fiqh lang={lang} dna={dna} setDna={setDna} />} />
+              <Route path="/zahra" element={<ChatZahra lang={lang} dna={dna} setDna={setDna} />} />
+              <Route path="/qareen" element={<ChatQareen lang={lang} dna={dna} setDna={setDna} />} />
+              <Route path="/library" element={<LibrarySection lang={lang} dna={dna} setDna={setDna} />} />
             </Routes>
           </AnimatePresence>
         </main>

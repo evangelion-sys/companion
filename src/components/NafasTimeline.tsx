@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
-import { Language } from '../types';
+import { motion, AnimatePresence } from 'motion/react';
+import { Language, SpiritualDNA } from '../types';
 import { cn } from '../lib/utils';
-import { Sun, Moon, Sunrise, Sunset } from 'lucide-react';
+import { Sun, Moon, Sunrise, Sunset, Wind } from 'lucide-react';
+import BreathingTool from './BreathingTool';
 
 type TimeOfDay = 'Fajr' | 'Dhuha' | 'Maghrib' | 'Isha';
 
-export default function NafasTimeline({ lang }: { lang: Language }) {
+export default function NafasTimeline({ lang, dna }: { lang: Language, dna: SpiritualDNA }) {
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('Dhuha');
+  const [showBreathing, setShowBreathing] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -81,6 +83,32 @@ export default function NafasTimeline({ lang }: { lang: Language }) {
         </div>
 
         <div className="space-y-6">
+          <div className="flex justify-center">
+            <button 
+              onClick={() => setShowBreathing(!showBreathing)}
+              className={cn(
+                "flex items-center gap-2 px-6 py-3 rounded-full font-kufic text-sm transition-all active:scale-95 shadow-lg",
+                showBreathing ? "bg-gold-500 text-emerald-950" : "bg-emerald-900 text-gold-500 border border-gold-500/20"
+              )}
+            >
+              <Wind size={18} />
+              {lang === 'ar' ? 'تمرين التنفس' : 'Breathing Exercise'}
+            </button>
+          </div>
+
+          <AnimatePresence>
+            {showBreathing && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden"
+              >
+                <BreathingTool lang={lang} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <div className="p-5 bg-white/5 rounded-2xl border border-gold-500/10 backdrop-blur-sm">
             <h3 className="stone-and-silk-header text-[10px] opacity-60">{lang === 'ar' ? 'الذكر' : 'Remembrance'}</h3>
             <p className="text-lg font-serif leading-relaxed">{current.adhkar}</p>

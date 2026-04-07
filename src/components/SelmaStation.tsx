@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Language } from '../types';
+import { Language, SpiritualDNA } from '../types';
 import { SELMA_POEMS, DAILY_WIRDS } from '../constants';
 import { Shield, Heart, Sparkles, Moon } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-export default function SelmaStation({ lang }: { lang: Language }) {
+export default function SelmaStation({ lang, dna }: { lang: Language, dna: SpiritualDNA }) {
   const [greeting, setGreeting] = useState('');
   const [wird, setWird] = useState(DAILY_WIRDS[0]);
 

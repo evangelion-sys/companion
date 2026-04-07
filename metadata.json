@@ -1,7 +1,9 @@
 {
-  "name": "الأنيس (The Companion)",
-  "description": "A comprehensive spiritual, cultural, and psychological companion for women, featuring a poetry library, spiritual jurisprudence, Algerian dialect AI, and psychological support.",
+  "name": "The Great Architect's Sanctuary",
+  "description": "A high-luxury spiritual and intellectual sanctuary for Selma. Master Calligraphy, Sufi Mysticism, Clinical Psychology, and Ancient Runic Paths.",
   "requestFramePermissions": [
-    "microphone"
+    "camera",
+    "microphone",
+    "geolocation"
   ]
 }
