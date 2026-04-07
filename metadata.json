@@ -1,0 +1,7 @@
+{
+  "name": "الأنيس (The Companion)",
+  "description": "A comprehensive spiritual, cultural, and psychological companion for women, featuring a poetry library, spiritual jurisprudence, Algerian dialect AI, and psychological support.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
